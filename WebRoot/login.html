@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+    <style type="text/css">
+        #loginDiv {background:#FFFCC7;border:#F0B645 solid 10px; width:400px; height:165px; margin-top:-100px; margin-left:-200px;}
+    </style>
+    <script src="../jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="Common.js"></script>
+    <script language="javascript" type="text/javascript"> 
+        $(function(){
+            $("#loginDiv").fadeIn();
+            $("#loginin").click(function(){
+                $.get("test.aspx?index=5",{name:$(":text").val(),pwd:$(":password").val()},function(xml){
+                    if(xml.toLowerCase()=="success")
+                    {
+                        $.hideDialog();
+                        $("#btn").hide();
+                        $("body").append("登陆成功");
+                    }
+                    else
+                        alert("fail");
+                });
+            });
+        });                         
+    </script>             
+</head>
+<body>
+<div id='loginDiv' style="display:none">
+    <table>
+        <tr>
+           <td colspan="2" align="center"><b>登录</b></td> 
+        </tr>
+        <tr>
+            <td>用户名：</td>
+            <td><input type="text" /></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input type="password" /></td>
+        </tr>
+        <tr>
+           <td colspan="2" align="center"><input id="loginin" type="button" value="登录" /></td> 
+        </tr>
+        <tr>
+           <td colspan="2" align="center">用户名和密码为admin</td> 
+        </tr>
+    </table>
+</div>
+</body>
+</html>
